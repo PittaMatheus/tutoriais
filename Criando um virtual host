@@ -1,0 +1,33 @@
+Criando um virtual host
+
+acessar pasta do apache
+# cd /etc/apache2/sites-available
+
+Criar arquivo de configuração para o Virtual Host
+# sudo gedit <nomedovirtualhost.conf>
+
+    Dentro do arquivo, gerar o virtual host:
+        <VirtualHost *:80>
+	        ServerName release.bestwayenglishschool.com.br
+	        DocumentRoot /var/www/html/release.bestwayenglishschool.com.br
+	        <Directory /var/www/php>
+		        DirectoryIndex index.html
+		        AllowOverride All
+		        Order allow,deny
+		        Allow from all
+	        </Directory>
+        </VirtualHost>
+
+Voltando para o terminal, habilitar o VirtualHots
+# sudo a2ensite release.bestwayenglishschool.com.br.conf
+
+Reiniciar apache
+# sudo /etc/init.d/apache2 restart
+
+alterar arquivo host
+# sudo gedit /etc/hosts
+    Adicionar Linha:
+    127.0.0.1   release.bestwayenglishschool.com.br
+
+Reiniciar apache
+# sudo /etc/init.d/apache2 restart
